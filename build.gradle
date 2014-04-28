@@ -43,6 +43,8 @@ project(":desktop") {
         compile "com.badlogicgames.gdx:gdx-tools:$gdxVersion"
         compile "com.badlogicgames.gdx:gdx-controllers-desktop:$gdxVersion"
         compile "com.badlogicgames.gdx:gdx-controllers-platform:$gdxVersion:natives-desktop"
+		compile "aurelienribon:tweenengine:6.3.3"
+		compile "aurelienribon:tweenengine:6.3.3:sources"
     }
 }
 
@@ -123,6 +125,8 @@ project(":core") {
         compile "com.badlogicgames.box2dlights:box2dlights:1.2"
         compile "com.badlogicgames.gdx:gdx-freetype:$gdxVersion"
         compile "com.badlogicgames.gdx:gdx-controllers:$gdxVersion"
+		compile "aurelienribon:tweenengine:6.3.3"
+        compile "aurelienribon:tweenengine:6.3.3:sources"
     }
 }
 
