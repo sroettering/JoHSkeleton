@@ -13,9 +13,7 @@ import com.badlogic.gdx.assets.loaders.TextureLoader;
 import com.badlogic.gdx.assets.loaders.resolvers.InternalFileHandleResolver;
 import com.badlogic.gdx.assets.loaders.resolvers.ResolutionFileResolver;
 import com.badlogic.gdx.files.FileHandle;
-import com.badlogic.gdx.graphics.Camera;
 import com.badlogic.gdx.graphics.GL20;
-import com.badlogic.gdx.graphics.PerspectiveCamera;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.Texture.TextureFilter;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
@@ -71,16 +69,17 @@ public class SplashScreen implements Screen {
 
 		} else {
 			batch.begin();
-			batch.draw(logoSw, 0, 0, Gdx.graphics.getWidth(), Gdx.graphics.getHeight());
+			batch.draw(logoSw, 0, 0, 800, 600);
 			batch.end();
 
 			Gdx.gl.glEnable(GL20.GL_SCISSOR_TEST);
 			// 0.31 = prozentuale Höhe, ab der die rote Farbe beginnt (vom unteren Rand aus gesehen)
 			// 0.45 = Bereich in Prozent, der den Ladebalken darstellt (= 0,41 + 0,04 = Bereich in Prozent, welcher rote Farbe enthält + kleine Zugabe, damit das Logo nicht sofort weg ist, wenn es komplett in Farbe dargestellt wird (sieht geschickter aus)) 
-			Gdx.gl.glScissor(0, (int) (0.31 * Gdx.graphics.getHeight()), Gdx.graphics.getWidth(), (int) (0.45 * Gdx.graphics.getHeight() * game.assetManager.getProgress()));
+			// removed values from above to work with the new ExtendViewport
+			Gdx.gl.glScissor(0, 0, Gdx.graphics.getWidth(), (int) (Gdx.graphics.getHeight() * game.assetManager.getProgress()));
 
 			batch.begin();
-			batch.draw(logoColor, 0, 0, Gdx.graphics.getWidth(), Gdx.graphics.getHeight());
+			batch.draw(logoColor, 0, 0, 800, 600);
 			batch.end();
 
 			Gdx.gl.glDisable(GL20.GL_SCISSOR_TEST);
@@ -92,7 +91,7 @@ public class SplashScreen implements Screen {
 
 	@Override
 	public void resize(int width, int height) {
-		stage.getViewport().update(width, height, true);
+		stage.getViewport().update(width, height, false);
 	}
 
 	@Override
